@@ -63,11 +63,6 @@ namespace MsgPackSlim.Types
                     break;
 
                 case 0xd2:
-                    if ((number & 0x800000) != 0)
-                        return number | (-1 ^ 0xffffff);
-                    break;
-
-                case 0xd3:
                     break;
 
                 default:
