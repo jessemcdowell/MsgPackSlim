@@ -15,6 +15,9 @@ namespace MsgPackSlim.Types
         private const string TestText = "hello world";
         private static readonly byte[] TestBytes = GetBytes(0x68, 0x65, 0x6c, 0x6c, 0x6f, 0x20, 0x77, 0x6f, 0x72, 0x6c, 0x64);
 
+        private const string MultiByteTestText = "こんにちは、";
+        private static readonly byte[] MultiByteTestBytes = GetBytes(0xe3, 0x81, 0x93, 0xe3, 0x82, 0x93, 0xe3, 0x81, 0xab,
+            0xe3, 0x81, 0xa1, 0xe3, 0x81, 0xaf, 0xe3, 0x80, 0x81);
 
         [TestFixtureSetUp]
         public void FixtureSetUp()
@@ -149,6 +152,16 @@ namespace MsgPackSlim.Types
             var actual = Type.GetValue(String32FormatByte, info, TestBytes);
 
             Assert.That(actual, Is.EqualTo(TestText));
+        }
+
+        [Test]
+        public void GetValue_ForMultiByteCharacters_ReturnsExpectedValue()
+        {
+            var info = ValueInfo.ForContent(2, MultiByteTestBytes.Length);
+
+            var actual = Type.GetValue(String16FormatByte, info, MultiByteTestBytes);
+
+            Assert.That(actual, Is.EqualTo(MultiByteTestText));
         }
     }
 }
