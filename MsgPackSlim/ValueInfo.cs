@@ -1,0 +1,33 @@
+﻿namespace MsgPackSlim
+{
+    public class ValueInfo
+    {
+        public int HeaderSize { get; private set; }
+        public int ContentSize { get; private set; }
+        public int ChildObjectCount { get; private set; }
+
+        public static readonly ValueInfo TypeOnlyValue = new ValueInfo(0, 0, 0);
+
+        public static ValueInfo ForChildContainer(int headerSize, int childCount)
+        {
+            return new ValueInfo(headerSize, 0, childCount);
+        }
+
+        public static ValueInfo ForHeaderlessContent(int contentSize)
+        {
+            return new ValueInfo(0, contentSize, 0);
+        }
+
+        public static ValueInfo ForContent(int headerSize, int contentSize)
+        {
+            return new ValueInfo(headerSize, contentSize, 0);
+        }
+
+        private ValueInfo(int headerSize, int contentSize, int childObjectCount)
+        {
+            ChildObjectCount = childObjectCount;
+            HeaderSize = headerSize;
+            ContentSize = contentSize;
+        }
+    }
+}

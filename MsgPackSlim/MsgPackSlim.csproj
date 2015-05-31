@@ -36,6 +36,11 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions.cs" />
+    <Compile Include="MsgPackFormatException.cs" />
+    <Compile Include="MsgPackReader.cs" />
+    <Compile Include="Parsers\NumericParser.cs" />
+    <Compile Include="Parsers\NumericConverter.cs" />
     <Compile Include="Types\ArrayType.cs" />
     <Compile Include="Types\BooleanType.cs" />
     <Compile Include="Types\RegistrationHelper.cs" />
@@ -48,7 +53,9 @@
     <Compile Include="Types\NotSupportedType.cs" />
     <Compile Include="Types\StringType.cs" />
     <Compile Include="Types\UnsignedIntegerType.cs" />
+    <Compile Include="ValueInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
