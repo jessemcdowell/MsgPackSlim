@@ -38,9 +38,10 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Types\MapTypeTests.cs" />
     <Compile Include="Types\StringTypeTests.cs" />
     <Compile Include="Types\NilTypeTests.cs" />
-    <Compile Include="Types\MapTypeTests.cs" />
+    <Compile Include="Types\ArrayTypeTests.cs" />
     <Compile Include="Types\BooleanTypeTests.cs" />
     <Compile Include="MsgPackReaderTests.cs" />
     <Compile Include="MsgPackTypeTests.cs" />

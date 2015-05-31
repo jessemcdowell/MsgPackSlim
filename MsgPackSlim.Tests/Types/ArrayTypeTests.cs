@@ -3,65 +3,65 @@
 namespace MsgPackSlim.Types
 {
     [TestFixture]
-    public class MapTypeTests : TestBase
+    public class ArrayTypeTests : TestBase
     {
-        private MapType Type { get; set; }
+        private ArrayType Type { get; set; }
 
-        private const byte Map16FormatByte = 0xde;
-        private const byte Map32FormatByte = 0xdf;
+        private const byte Array16FormatByte = 0xdc;
+        private const byte Array32FormatByte = 0xdd;
 
         [TestFixtureSetUp]
         public void FixtureSetUp()
         {
-            Type = new MapType();
+            Type = new ArrayType();
         }
 
         [Test]
-        public void ReadValueInfo_ForFixMap_ReturnsExpectedValues()
+        public void ReadValueInfo_ForFixArray_ReturnsExpectedValues()
         {
-            const byte formatByteWithOneItem = 0x81;
+            const byte formatByteWithOneItem = 0x91;
 
             var actual = Type.ReadValueInfo(formatByteWithOneItem, null);
 
-            Assert.That(actual.ChildObjectCount, Is.EqualTo(2), "ChildObjectCount");
+            Assert.That(actual.ChildObjectCount, Is.EqualTo(1), "ChildObjectCount");
             Assert.That(actual.HeaderSize, Is.EqualTo(0), "HeaderSize");
             Assert.That(actual.ContentSize, Is.EqualTo(0), "ContentSize");
         }
 
         [Test]
-        public void ReadValueInfo_ForMap16_ReturnsExpectedValues()
+        public void ReadValueInfo_ForArray16_ReturnsExpectedValues()
         {
             using (var stream = GetStream(0x11, 0x22))
             {
-                var actual = Type.ReadValueInfo(Map16FormatByte, stream);
+                var actual = Type.ReadValueInfo(Array16FormatByte, stream);
 
-                Assert.That(actual.ChildObjectCount, Is.EqualTo(0x1122 * 2), "ChildObjectCount");
+                Assert.That(actual.ChildObjectCount, Is.EqualTo(0x1122), "ChildObjectCount");
                 Assert.That(actual.HeaderSize, Is.EqualTo(2), "HeaderSize");
                 Assert.That(actual.ContentSize, Is.EqualTo(0), "ContentSize");
             }
         }
 
         [Test]
-        public void ReadValueInfo_ForMap16_WithMaximumLength_ReturnsExpectedValues()
+        public void ReadValueInfo_ForArray16_WithMaximumLength_ReturnsExpectedValues()
         {
             using (var stream = GetStream(0xff, 0xff))
             {
-                var actual = Type.ReadValueInfo(Map16FormatByte, stream);
+                var actual = Type.ReadValueInfo(Array16FormatByte, stream);
 
-                Assert.That(actual.ChildObjectCount, Is.EqualTo(0xffff * 2), "ChildObjectCount");
+                Assert.That(actual.ChildObjectCount, Is.EqualTo(0xffff), "ChildObjectCount");
                 Assert.That(actual.HeaderSize, Is.EqualTo(2), "HeaderSize");
                 Assert.That(actual.ContentSize, Is.EqualTo(0), "ContentSize");
             }
         }
 
         [Test]
-        public void ReadValueInfo_ForMap32_ReturnsExpectedValues()
+        public void ReadValueInfo_ForArray32_ReturnsExpectedValues()
         {
             using (var stream = GetStream(0x11, 0x22, 0x33, 0x44))
             {
-                var actual = Type.ReadValueInfo(Map32FormatByte, stream);
+                var actual = Type.ReadValueInfo(Array32FormatByte, stream);
 
-                Assert.That(actual.ChildObjectCount, Is.EqualTo(0x11223344 * 2), "ChildObjectCount");
+                Assert.That(actual.ChildObjectCount, Is.EqualTo(0x11223344), "ChildObjectCount");
                 Assert.That(actual.HeaderSize, Is.EqualTo(4), "HeaderSize");
                 Assert.That(actual.ContentSize, Is.EqualTo(0), "ContentSize");
             }

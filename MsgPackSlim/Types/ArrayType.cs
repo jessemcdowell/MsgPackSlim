@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using MsgPackSlim.Parsers;
 
 namespace MsgPackSlim.Types
 {
@@ -12,12 +13,29 @@ namespace MsgPackSlim.Types
 
         public ValueInfo ReadValueInfo(byte formatByte, Stream stream)
         {
-            throw new System.NotImplementedException();
+            if ((formatByte & 0xf0) == 0x90)
+                return ValueInfo.ForChildContainer(0, formatByte & 0x0f);
+
+            int headerSize;
+            switch (formatByte)
+            {
+                case 0xdc:
+                    headerSize = 2;
+                    break;
+                case 0xdd:
+                    headerSize = 4;
+                    break;
+                default:
+                    throw Exceptions.FormatByteNotSupported(formatByte);
+            }
+
+            var childCount = NumericParser.ReadInt32(stream, headerSize);
+            return ValueInfo.ForChildContainer(headerSize, childCount);
         }
 
         public object GetValue(byte formatByte, ValueInfo valueInfo, byte[] contentBytes)
         {
-            throw new System.NotImplementedException();
+            return null;
         }
     }
 }
