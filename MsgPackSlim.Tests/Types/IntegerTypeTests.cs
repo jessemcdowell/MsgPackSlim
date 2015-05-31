@@ -19,7 +19,7 @@ namespace MsgPackSlim.Types
         }
 
         [Test]
-        public void GetValue_ForZero_ReturnsExpectedValue()
+        public void GetValue_ForFixInt_WithValueZero_ReturnsExpectedValue()
         {
             const byte formatByte = 0x00;
             const int expected = 0;
@@ -30,7 +30,7 @@ namespace MsgPackSlim.Types
         }
 
         [Test]
-        public void GetValue_ForTypeOnlyValue_ReturnsExpectedValue()
+        public void GetValue_ForFixInt_ReturnsExpectedValue()
         {
             const byte formatByte = 0x76;
             const int expected = 0x76;
@@ -41,7 +41,7 @@ namespace MsgPackSlim.Types
         }
 
         [Test]
-        public void GetValue_ForNegativeOne_ReturnsExpectedValue()
+        public void GetValue_ForNegativeFixInt_WithValueNegativeOne_ReturnsExpectedValue()
         {
             const byte formatByte = 0xff;
             const int expected = -1;
@@ -52,7 +52,7 @@ namespace MsgPackSlim.Types
         }
 
         [Test]
-        public void GetValue_ForNegativeTypeOnlyValue_ReturnsExpectedValue()
+        public void GetValue_ForNegativeFixInt_ReturnsExpectedValue()
         {
             const byte formatByte = 0xeb;
             const int expected = -0x15;

@@ -31,6 +31,11 @@ namespace MsgPackSlim.Parsers
                 (value << 24);
         }
 
+        public static uint ToUInt32(byte[] bytes)
+        {
+            return (uint)ToInt32(bytes);
+        }
+
         public static long ToInt64(byte[] bytes)
         {
             var value = BitConverter.ToInt64(bytes, 0);
@@ -51,6 +56,11 @@ namespace MsgPackSlim.Parsers
                 ((value << 24) & 0xff0000000000) |
                 ((value << 40) & 0xff000000000000) |
                 (value << 56);
+        }
+
+        public static ulong ToUInt64(byte[] bytes)
+        {
+            return (ulong) ToInt64(bytes);
         }
     }
 }

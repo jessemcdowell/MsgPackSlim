@@ -49,5 +49,49 @@ namespace MsgPackSlim.Parsers
 
             Assert.That(actual, Is.EqualTo(expected), actual.ToString("x"));
         }
+
+        [Test]
+        public void ToUInt32_ReturnsExpectedValue()
+        {
+            var input = GetBytes(0x11, 0x22, 0x33, 0x44);
+            const uint expected = 0x11223344;
+
+            var actual = NumericConverter.ToUInt32(input);
+
+            Assert.That(actual, Is.EqualTo(expected), actual.ToString("x"));
+        }
+
+        [Test]
+        public void ToUInt32_ForMaximumValue_ReturnsExpectedValue()
+        {
+            var input = GetBytes(0xff, 0xff, 0xff, 0xff);
+            const uint expected = 0xffffffff;
+
+            var actual = NumericConverter.ToUInt32(input);
+
+            Assert.That(actual, Is.EqualTo(expected), actual.ToString("x"));
+        }
+
+        [Test]
+        public void ToUInt64_ReturnsExpectedValue()
+        {
+            var input = GetBytes(0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88);
+            const ulong expected = 0x1122334455667788;
+
+            var actual = NumericConverter.ToUInt64(input);
+
+            Assert.That(actual, Is.EqualTo(expected), actual.ToString("x"));
+        }
+
+        [Test]
+        public void ToUInt64_ForMaximumValue_ReturnsExpectedValue()
+        {
+            var input = GetBytes(0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff);
+            const ulong expected = 0xffffffffffffffff;
+
+            var actual = NumericConverter.ToUInt64(input);
+
+            Assert.That(actual, Is.EqualTo(expected), actual.ToString("x"));
+        }
     }
 }
