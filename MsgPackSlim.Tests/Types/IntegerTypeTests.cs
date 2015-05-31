@@ -63,7 +63,7 @@ namespace MsgPackSlim.Types
         }
 
         [Test]
-        public void GetValue_ForPositiveInt8_ReturnsExpectedValue()
+        public void GetValue_ForInt8_ReturnsExpectedValue()
         {
             var input = GetBytes(0x00, 0x00, 0x00, 0x12);
             const int expected = 0x12;
@@ -74,7 +74,7 @@ namespace MsgPackSlim.Types
         }
 
         [Test]
-        public void GetValue_ForNegativeInt8_ReturnsExpectedValue()
+        public void GetValue_ForInt8_WithNegativeValue_ReturnsExpectedValue()
         {
             var input = GetBytes(0x00, 0x00, 0x00, 0x9a);
             const int expected = -0x66;
@@ -85,7 +85,7 @@ namespace MsgPackSlim.Types
         }
 
         [Test]
-        public void GetValue_ForPositiveInt16_ReturnsExpectedValue()
+        public void GetValue_ForInt16_ReturnsExpectedValue()
         {
             var input = GetBytes(0x00, 0x00, 0x12, 0x34);
             const int expected = 0x1234;
@@ -96,7 +96,7 @@ namespace MsgPackSlim.Types
         }
 
         [Test]
-        public void GetValue_ForNegativeInt16_ReturnsExpectedValue()
+        public void GetValue_ForInt16_WithNegativeValue_ReturnsExpectedValue()
         {
             var input = GetBytes(0x00, 0x00, 0x9a, 0xbc);
             const int expected = -0x6544;
@@ -107,7 +107,7 @@ namespace MsgPackSlim.Types
         }
 
         [Test]
-        public void GetValue_ForPositiveInt32_ReturnsExpectedValue()
+        public void GetValue_ForInt32_ReturnsExpectedValue()
         {
             var input = GetBytes(0x12, 0x34, 0x56, 0x78);
             const int expected = 0x12345678;
@@ -118,7 +118,7 @@ namespace MsgPackSlim.Types
         }
 
         [Test]
-        public void GetValue_ForNegativeInt32_ReturnsExpectedValue()
+        public void GetValue_ForInt32_WithNegativeValue_ReturnsExpectedValue()
         {
             var input = GetBytes(0x9a, 0xbc, 0xde, 0xf1);
             const int expected = -0x6543210f;
@@ -129,7 +129,7 @@ namespace MsgPackSlim.Types
         }
 
         [Test]
-        public void GetValue_ForPositiveInt64_ReturnsExpectedValue()
+        public void GetValue_ForInt64_ReturnsExpectedValue()
         {
             var input = GetBytes(0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88);
             const long expected = 0x1122334455667788;
@@ -140,7 +140,7 @@ namespace MsgPackSlim.Types
         }
 
         [Test]
-        public void GetValue_ForNegativeInt64_ReturnsExpectedValue()
+        public void GetValue_ForInt64_WithNegativeValue_ReturnsExpectedValue()
         {
             var input = GetBytes(0x88, 0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff, 0x11);
             const long expected = -0x77554433221100EF;

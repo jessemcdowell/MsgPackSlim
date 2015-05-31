@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace MsgPackSlim.Parsers
 {
@@ -61,6 +62,20 @@ namespace MsgPackSlim.Parsers
         public static ulong ToUInt64(byte[] bytes)
         {
             return (ulong) ToInt64(bytes);
+        }
+
+        public static float ToSingle(byte[] bytes)
+        {
+            if (RequiresEndianConversion)
+                bytes = bytes.Reverse().ToArray();
+            return BitConverter.ToSingle(bytes, 0);
+        }
+
+        public static double ToDouble(byte[] bytes)
+        {
+            if (RequiresEndianConversion)
+                bytes = bytes.Reverse().ToArray();
+            return BitConverter.ToDouble(bytes, 0);
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using MsgPackSlim.Types;
+﻿using MsgPackSlim.Types;
 
 namespace MsgPackSlim
 {
@@ -21,9 +20,8 @@ namespace MsgPackSlim
         //ext 8 11000111 0xc7
         //ext 16 11001000 0xc8
         //ext 32 11001001 0xc9
-        //float 32 11001010 0xca
-        //float 64 11001011 0xcb
 
+        public static readonly FloatingPointType FloatingPoint = Register(new FloatingPointType());
         public static readonly UnsignedIntegerType UnsignedInteger = Register(new UnsignedIntegerType());
 
         //fixext 1 11010100 0xd4

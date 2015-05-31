@@ -38,6 +38,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Types\FloatingPointTypeTests.cs" />
     <Compile Include="Types\UnsignedIntegerTypeTests.cs" />
     <Compile Include="Types\MapTypeTests.cs" />
     <Compile Include="Types\StringTypeTests.cs" />

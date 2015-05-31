@@ -1,4 +1,7 @@
-﻿using NUnit.Framework;
+﻿using System;
+using System.Linq;
+using System.Linq.Expressions;
+using NUnit.Framework;
 
 namespace MsgPackSlim.Parsers
 {
@@ -92,6 +95,108 @@ namespace MsgPackSlim.Parsers
             var actual = NumericConverter.ToUInt64(input);
 
             Assert.That(actual, Is.EqualTo(expected), actual.ToString("x"));
+        }
+
+        [Test]
+        public void ToSingle_WithValueZero_ReturnsExpectedValue()
+        {
+            var input = GetBytes(0x00, 0x00, 0x00, 0x00);
+            const float expected = 0;
+
+            var actual = NumericConverter.ToSingle(input);
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void ToSingle_ReturnsExpectedValue()
+        {
+            var input = GetBytes(0x42, 0xf6, 0xe9, 0x79);
+            const float expected = 123.456f;
+
+            var actual = NumericConverter.ToSingle(input);
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void ToSingle_WithNegativeValue_ReturnsExpectedValue()
+        {
+            var input = GetBytes(0xc2, 0xf6, 0xe9, 0x79);
+            const float expected = -123.456f;
+
+            var actual = NumericConverter.ToSingle(input);
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        public static readonly object[][] SpecialSingleValues =
+        {
+            new object[] {float.NaN, GetBytes(0xff, 0xc0, 0x00, 0x00)},
+            new object[] {float.PositiveInfinity, GetBytes(0x7f, 0x80, 0x00, 0x00)},
+            new object[] {float.NegativeInfinity, GetBytes(0xff, 0x80, 0x00, 0x00)},
+            new object[] {float.MaxValue, GetBytes(0x7f, 0x7f, 0xff, 0xff)},
+            new object[] {float.MinValue, GetBytes(0xff, 0x7f, 0xff, 0xff)},
+            new object[] {float.Epsilon, GetBytes(0x00, 0x00, 0x00, 0x01)}
+        };
+
+        [TestCaseSource("SpecialSingleValues")]
+        public void ToSingle_ForSpecialValues_ReturnsExpectedValue(float expected, byte[] input)
+        {
+            var actual = NumericConverter.ToSingle(input);
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void ToDouble_WithValueZero_ReturnsExpectedValue()
+        {
+            var input = GetBytes(0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
+            const double expected = 0;
+
+            var actual = NumericConverter.ToSingle(input);
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void ToDouble_ForFloat64_ReturnsExpectedValue()
+        {
+            var input = GetBytes(0x40, 0x5e, 0xdd, 0x2f, 0x1a, 0x9f, 0xbe, 0x77);
+            const double expected = 123.456;
+
+            var actual = NumericConverter.ToDouble(input);
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void ToDouble_WithNegativeValue_ReturnsExpectedValue()
+        {
+            var input = GetBytes(0xc0, 0x5e, 0xdd, 0x2f, 0x1a, 0x9f, 0xbe, 0x77);
+            const double expected = -123.456;
+
+            var actual = NumericConverter.ToDouble(input);
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        public static readonly object[][] SpecialDoubleValues =
+        {
+            new object[] {double.NaN, GetBytes(0xff, 0xf8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00)},
+            new object[] {double.PositiveInfinity, GetBytes(0x7f, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00)},
+            new object[] {double.NegativeInfinity, GetBytes(0xff, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00)},
+            new object[] {double.MaxValue, GetBytes(0x7f, 0xef, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff)},
+            new object[] {double.MinValue, GetBytes(0xff, 0xef, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff)},
+            new object[] {double.Epsilon, GetBytes(0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01)}
+        };
+
+        [TestCaseSource("SpecialDoubleValues")]
+        public void ToDouble_ForSpecialValues_ReturnsExpectedValue(double expected, byte[] input)
+        {
+            var actual = NumericConverter.ToDouble(input);
+
+            Assert.That(actual, Is.EqualTo(expected));
         }
     }
 }
