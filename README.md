@@ -2,6 +2,9 @@
 
 A simple library for parsing MsgPack
 
+For information about MsgPack, see: http://msgpack.org/
+
+This implementation is based on this specification version: https://github.com/msgpack/msgpack/blob/8fc1ab3efbece26890d16baa8e5bbc6867ba80b8/spec.md
 
 # Author
 

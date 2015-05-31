@@ -36,10 +36,18 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IMsgPackType.cs" />
+    <Compile Include="Types\ArrayType.cs" />
+    <Compile Include="Types\BooleanType.cs" />
+    <Compile Include="Types\RegistrationHelper.cs" />
+    <Compile Include="Types\IMsgPackType.cs" />
+    <Compile Include="Types\IntegerType.cs" />
+    <Compile Include="Types\MapType.cs" />
     <Compile Include="MsgPackType.cs" />
+    <Compile Include="Types\NilType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnsupportedType.cs" />
+    <Compile Include="Types\NotSupportedType.cs" />
+    <Compile Include="Types\StringType.cs" />
+    <Compile Include="Types\UnsignedIntegerType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
