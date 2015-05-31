@@ -25,9 +25,9 @@ namespace MsgPackSlim.Parsers
             if (!RequiresEndianConversion)
                 return;
             value =
-                (value >> 24) |
-                ((value >> 8) & 0xff00) |
-                ((value << 8) & 0xff0000) |
+                ((value >> 24) & 0xff) |
+                ((value >> 08) & 0xff00) |
+                ((value << 08) & 0xff0000) |
                 (value << 24);
         }
 
@@ -43,7 +43,7 @@ namespace MsgPackSlim.Parsers
             if (!RequiresEndianConversion)
                 return;
             value =
-                (value >> 56) |
+                ((value >> 56) & 0xff) |
                 ((value >> 40) & 0xff00) |
                 ((value >> 24) & 0xff0000) |
                 ((value >> 08) & 0xff000000) |

@@ -1,10 +1,9 @@
-﻿using System.IO;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace MsgPackSlim
 {
     [TestFixture]
-    public class MsgPackReaderTests
+    public class MsgPackReaderTests : TestBase
     {
         [Test]
         public void ParseCanonicalExample()
@@ -39,11 +38,6 @@ namespace MsgPackSlim
 
                 Assert.That(reader.ReadNext(), Is.False, "read end of document");
             }
-        }
-
-        private MemoryStream GetStream(params byte[] bytes)
-        {
-            return new MemoryStream(bytes);
         }
     }
 }
