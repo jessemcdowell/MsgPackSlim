@@ -1,16 +1,16 @@
 ﻿using NUnit.Framework;
 
-namespace MsgPackSlim.Types
+namespace MsgPackSlim.Formats
 {
     [TestFixture]
-    public class NilTypeTests : TestBase
+    public class NilFormatTests : TestBase
     {
-        private NilType Type { get; set; }
+        private NilFormat Format { get; set; }
 
         [TestFixtureSetUp]
         public void FixtureSetUp()
         {
-            Type = new NilType();
+            Format = new NilFormat();
         }
 
         [Test]
@@ -18,7 +18,7 @@ namespace MsgPackSlim.Types
         {
             const byte nilFormatByte = 0xc0;
 
-            var actual = Type.GetValue(nilFormatByte, null, null);
+            var actual = Format.GetValue(nilFormatByte, null, null);
 
             Assert.That(actual, Is.Null);
         }

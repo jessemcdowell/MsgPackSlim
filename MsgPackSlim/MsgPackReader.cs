@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using MsgPackSlim.Types;
+using MsgPackSlim.Formats;
 
 namespace MsgPackSlim
 {
@@ -8,23 +8,23 @@ namespace MsgPackSlim
     {
         private readonly Stream _stream;
         private readonly bool _disposeStream;
-        private readonly IMsgPackType[] _formatMap;
+        private readonly IMsgPackFormat[] _formatMap;
 
         public byte FormatByte { get; private set; }
-        public IMsgPackType Type { get; private set; }
+        public IMsgPackFormat Format { get; private set; }
         public byte[] ContentBytes { get; private set; }
 
         private ValueInfo _valueInfo;
         private readonly byte[] _smallBuffer = new byte[4];
 
-        public MsgPackReader(Stream stream, bool disposeStream = true, IMsgPackType[] formatMap = null)
+        public MsgPackReader(Stream stream, bool disposeStream = true, IMsgPackFormat[] formatMap = null)
         {
             if (stream == null)
                 throw new ArgumentNullException("stream");
 
             _stream = stream;
             _disposeStream = disposeStream;
-            _formatMap = formatMap ?? MsgPackType.FormatMap;
+            _formatMap = formatMap ?? MsgPackFormat.FormatMap;
         }
 
         ~MsgPackReader()
@@ -54,9 +54,9 @@ namespace MsgPackSlim
 
             if (!ReadFormatByte())
                 return false;
-            Type = _formatMap[FormatByte];
+            Format = _formatMap[FormatByte];
 
-            _valueInfo = Type.ReadValueInfo(FormatByte, _stream);
+            _valueInfo = Format.ReadValueInfo(FormatByte, _stream);
 
             if (_valueInfo.ContentSize < 0)
                 throw new NotSupportedException("Error loading value data: content size not supported");
@@ -70,7 +70,7 @@ namespace MsgPackSlim
 
         private void ResetValues()
         {
-            Type = null;
+            Format = null;
             _valueInfo = null;
             ContentBytes = null;
         }
@@ -132,24 +132,24 @@ namespace MsgPackSlim
 
         public bool IsMap
         {
-            get { return Type is MapType; }
+            get { return Format is MapFormat; }
         }
 
         public bool IsArray
         {
-            get { return Type is ArrayType; }
+            get { return Format is ArrayFormat; }
         }
 
         public bool IsString
         {
-            get { return Type is StringType; }
+            get { return Format is StringFormat; }
         }
 
         public object GetValue()
         {
             if (_valueInfo == null)
                 throw new InvalidOperationException("There is no current value");
-            return Type.GetValue(FormatByte, _valueInfo, ContentBytes);
+            return Format.GetValue(FormatByte, _valueInfo, ContentBytes);
         }
     }
 }

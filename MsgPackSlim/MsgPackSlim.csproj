@@ -37,23 +37,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions.cs" />
-    <Compile Include="FloatingPointType.cs" />
+    <Compile Include="Formats\FloatingPointFormat.cs" />
     <Compile Include="MsgPackFormatException.cs" />
     <Compile Include="MsgPackReader.cs" />
     <Compile Include="Parsers\NumericParser.cs" />
     <Compile Include="Parsers\NumericConverter.cs" />
-    <Compile Include="Types\ArrayType.cs" />
-    <Compile Include="Types\BooleanType.cs" />
-    <Compile Include="Types\RegistrationHelper.cs" />
-    <Compile Include="Types\IMsgPackType.cs" />
-    <Compile Include="Types\IntegerType.cs" />
-    <Compile Include="Types\MapType.cs" />
-    <Compile Include="MsgPackType.cs" />
-    <Compile Include="Types\NilType.cs" />
+    <Compile Include="Formats\ArrayFormat.cs" />
+    <Compile Include="Formats\BooleanFormat.cs" />
+    <Compile Include="Formats\RegistrationHelper.cs" />
+    <Compile Include="Formats\IMsgPackFormat.cs" />
+    <Compile Include="Formats\IntegerFormat.cs" />
+    <Compile Include="Formats\MapFormat.cs" />
+    <Compile Include="MsgPackFormat.cs" />
+    <Compile Include="Formats\NilFormat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Types\NotSupportedType.cs" />
-    <Compile Include="Types\StringType.cs" />
-    <Compile Include="Types\UnsignedIntegerType.cs" />
+    <Compile Include="Formats\NotSupportedFormat.cs" />
+    <Compile Include="Formats\StringFormat.cs" />
+    <Compile Include="Formats\UnsignedIntegerFormat.cs" />
     <Compile Include="ValueInfo.cs" />
   </ItemGroup>
   <ItemGroup />

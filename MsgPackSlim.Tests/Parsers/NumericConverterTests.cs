@@ -41,7 +41,6 @@ namespace MsgPackSlim.Parsers
             Assert.That(actual, Is.EqualTo(expected), actual.ToString("x"));
         }
 
-
         [Test]
         public void ToInt64_ForNegativeNumber_ReturnsExpectedValue()
         {

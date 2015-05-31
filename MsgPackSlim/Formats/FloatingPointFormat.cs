@@ -1,13 +1,11 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using MsgPackSlim.Parsers;
-using MsgPackSlim.Types;
 
-namespace MsgPackSlim
+namespace MsgPackSlim.Formats
 {
-    public class FloatingPointType : IMsgPackType
+    public class FloatingPointFormat : IMsgPackFormat
     {
-        public void Register(IMsgPackType[] formatMap)
+        public void Register(IMsgPackFormat[] formatMap)
         {
             RegistrationHelper.RegisterBitMask(formatMap, this, 0xca, 1);
         }

@@ -1,16 +1,16 @@
 ﻿using NUnit.Framework;
 
-namespace MsgPackSlim.Types
+namespace MsgPackSlim.Formats
 {
     [TestFixture]
-    public class BooleanTypeTests : TestBase
+    public class BooleanFormatTests : TestBase
     {
-        private BooleanType Type { get; set; }
+        private BooleanFormat Format { get; set; }
 
         [TestFixtureSetUp]
         public void FixtureSetUp()
         {
-            Type = new BooleanType();
+            Format = new BooleanFormat();
         }
 
         [Test]
@@ -18,7 +18,7 @@ namespace MsgPackSlim.Types
         {
             const byte trueFormatByte = 0xc3;
 
-            var actual = Type.GetValue(trueFormatByte, null, null);
+            var actual = Format.GetValue(trueFormatByte, null, null);
 
             Assert.That(actual, Is.EqualTo(true));
         }
@@ -28,7 +28,7 @@ namespace MsgPackSlim.Types
         {
             const byte falseFormatByte = 0xc2;
 
-            var actual = Type.GetValue(falseFormatByte, null, null);
+            var actual = Format.GetValue(falseFormatByte, null, null);
 
             Assert.That(actual, Is.EqualTo(false));
         }

@@ -38,19 +38,19 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Types\FloatingPointTypeTests.cs" />
-    <Compile Include="Types\UnsignedIntegerTypeTests.cs" />
-    <Compile Include="Types\MapTypeTests.cs" />
-    <Compile Include="Types\StringTypeTests.cs" />
-    <Compile Include="Types\NilTypeTests.cs" />
-    <Compile Include="Types\ArrayTypeTests.cs" />
-    <Compile Include="Types\BooleanTypeTests.cs" />
+    <Compile Include="Formats\FloatingPointFormatTests.cs" />
+    <Compile Include="Formats\UnsignedIntegerFormatTests.cs" />
+    <Compile Include="Formats\MapFormatTests.cs" />
+    <Compile Include="Formats\StringFormatTests.cs" />
+    <Compile Include="Formats\NilFormatTests.cs" />
+    <Compile Include="Formats\ArrayFormatTests.cs" />
+    <Compile Include="Formats\BooleanFormatTests.cs" />
     <Compile Include="MsgPackReaderTests.cs" />
-    <Compile Include="MsgPackTypeTests.cs" />
+    <Compile Include="MsgPackFormatTests.cs" />
     <Compile Include="Parsers\NumericConverterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestBase.cs" />
-    <Compile Include="Types\IntegerTypeTests.cs" />
+    <Compile Include="Formats\IntegerFormatTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MsgPackSlim\MsgPackSlim.csproj">

@@ -1,11 +1,11 @@
 ﻿using NUnit.Framework;
 
-namespace MsgPackSlim.Types
+namespace MsgPackSlim.Formats
 {
     [TestFixture]
-    public class MapTypeTests : TestBase
+    public class MapFormatTests : TestBase
     {
-        private MapType Type { get; set; }
+        private MapFormat Format { get; set; }
 
         private const byte Map16FormatByte = 0xde;
         private const byte Map32FormatByte = 0xdf;
@@ -13,7 +13,7 @@ namespace MsgPackSlim.Types
         [TestFixtureSetUp]
         public void FixtureSetUp()
         {
-            Type = new MapType();
+            Format = new MapFormat();
         }
 
         [Test]
@@ -21,7 +21,7 @@ namespace MsgPackSlim.Types
         {
             const byte formatByteWithOneItem = 0x81;
 
-            var actual = Type.ReadValueInfo(formatByteWithOneItem, null);
+            var actual = Format.ReadValueInfo(formatByteWithOneItem, null);
 
             Assert.That(actual.ChildObjectCount, Is.EqualTo(2), "ChildObjectCount");
             Assert.That(actual.HeaderSize, Is.EqualTo(0), "HeaderSize");
@@ -33,7 +33,7 @@ namespace MsgPackSlim.Types
         {
             using (var stream = GetStream(0x11, 0x22))
             {
-                var actual = Type.ReadValueInfo(Map16FormatByte, stream);
+                var actual = Format.ReadValueInfo(Map16FormatByte, stream);
 
                 Assert.That(actual.ChildObjectCount, Is.EqualTo(0x1122 * 2), "ChildObjectCount");
                 Assert.That(actual.HeaderSize, Is.EqualTo(2), "HeaderSize");
@@ -46,7 +46,7 @@ namespace MsgPackSlim.Types
         {
             using (var stream = GetStream(0xff, 0xff))
             {
-                var actual = Type.ReadValueInfo(Map16FormatByte, stream);
+                var actual = Format.ReadValueInfo(Map16FormatByte, stream);
 
                 Assert.That(actual.ChildObjectCount, Is.EqualTo(0xffff * 2), "ChildObjectCount");
                 Assert.That(actual.HeaderSize, Is.EqualTo(2), "HeaderSize");
@@ -59,7 +59,7 @@ namespace MsgPackSlim.Types
         {
             using (var stream = GetStream(0x11, 0x22, 0x33, 0x44))
             {
-                var actual = Type.ReadValueInfo(Map32FormatByte, stream);
+                var actual = Format.ReadValueInfo(Map32FormatByte, stream);
 
                 Assert.That(actual.ChildObjectCount, Is.EqualTo(0x11223344 * 2), "ChildObjectCount");
                 Assert.That(actual.HeaderSize, Is.EqualTo(4), "HeaderSize");

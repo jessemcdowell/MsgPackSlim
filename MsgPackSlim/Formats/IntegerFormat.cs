@@ -1,11 +1,11 @@
 ﻿using System.IO;
 using MsgPackSlim.Parsers;
 
-namespace MsgPackSlim.Types
+namespace MsgPackSlim.Formats
 {
-    public class IntegerType : IMsgPackType
+    public class IntegerFormat : IMsgPackFormat
     {
-        public void Register(IMsgPackType[] formatMap)
+        public void Register(IMsgPackFormat[] formatMap)
         {
             RegistrationHelper.RegisterBitMask(formatMap, this, 0x00, 7);
             RegistrationHelper.RegisterBitMask(formatMap, this, 0xd0, 2);

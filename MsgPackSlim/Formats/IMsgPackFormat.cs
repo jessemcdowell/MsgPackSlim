@@ -1,10 +1,10 @@
 ﻿using System.IO;
 
-namespace MsgPackSlim.Types
+namespace MsgPackSlim.Formats
 {
-    public interface IMsgPackType
+    public interface IMsgPackFormat
     {
-        void Register(IMsgPackType[] formatMap);
+        void Register(IMsgPackFormat[] formatMap);
 
         ValueInfo ReadValueInfo(byte formatByte, Stream stream);
 

@@ -1,10 +1,10 @@
 using System.IO;
 
-namespace MsgPackSlim.Types
+namespace MsgPackSlim.Formats
 {
-    public class BooleanType : IMsgPackType
+    public class BooleanFormat : IMsgPackFormat
     {
-        public void Register(IMsgPackType[] formatMap)
+        public void Register(IMsgPackFormat[] formatMap)
         {
             RegistrationHelper.RegisterBitMask(formatMap, this, 0xc2, 1);
         }

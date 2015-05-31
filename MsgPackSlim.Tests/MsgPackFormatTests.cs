@@ -1,16 +1,16 @@
 ﻿using System.Linq;
-using MsgPackSlim.Types;
+using MsgPackSlim.Formats;
 using NUnit.Framework;
 
 namespace MsgPackSlim
 {
     [TestFixture]
-    public class MsgPackTypeTests
+    public class MsgPackFormatTests
     {
         [Test]
         public void FormatMap_HasNoNullItems()
         {
-            var formatMap = MsgPackType.FormatMap;
+            var formatMap = MsgPackFormat.FormatMap;
 
             for (var i = 0; i < formatMap.Length; i++)
             {
@@ -21,14 +21,14 @@ namespace MsgPackSlim
         [Test]
         public void FormatMap_HasInstanceOfAllTypes()
         {
-            var allTypes = typeof (IMsgPackType).Assembly.GetExportedTypes()
+            var allTypes = typeof (IMsgPackFormat).Assembly.GetExportedTypes()
                 .Where(type =>
-                    (typeof (IMsgPackType)).IsAssignableFrom(type) &&
+                    (typeof (IMsgPackFormat)).IsAssignableFrom(type) &&
                     !type.IsAbstract)
                 .ToList();
             Assert.That(allTypes, Is.Not.Empty);
 
-            var allRegisteredTypes = MsgPackType.FormatMap
+            var allRegisteredTypes = MsgPackFormat.FormatMap
                 .GroupBy(type => type.GetType())
                 .Select(group => group.Key)
                 .ToList();

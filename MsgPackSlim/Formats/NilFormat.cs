@@ -1,10 +1,10 @@
 ﻿using System.IO;
 
-namespace MsgPackSlim.Types
+namespace MsgPackSlim.Formats
 {
-    public class NilType : IMsgPackType
+    public class NilFormat : IMsgPackFormat
     {
-        public void Register(IMsgPackType[] formatMap)
+        public void Register(IMsgPackFormat[] formatMap)
         {
             formatMap[0xc0] = this;
         }

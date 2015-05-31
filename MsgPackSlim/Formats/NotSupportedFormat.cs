@@ -1,11 +1,11 @@
 ﻿using System;
 using System.IO;
 
-namespace MsgPackSlim.Types
+namespace MsgPackSlim.Formats
 {
-    public class NotSupportedType : IMsgPackType
+    public class NotSupportedFormat : IMsgPackFormat
     {
-        public void Register(IMsgPackType[] formatMap)
+        public void Register(IMsgPackFormat[] formatMap)
         {
             throw new NotSupportedException();
         }
