@@ -6,6 +6,10 @@ For information about MsgPack, see: http://msgpack.org/
 
 This implementation is based on this specification version: https://github.com/msgpack/msgpack/blob/8fc1ab3efbece26890d16baa8e5bbc6867ba80b8/spec.md
 
+## Limitations
+
+* cannot read values where the content has more than 2147483647 bytes
+
 # Author
 
 This project was created by Jesse McDowell.
