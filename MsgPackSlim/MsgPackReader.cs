@@ -145,6 +145,21 @@ namespace MsgPackSlim
             get { return Format is StringFormat; }
         }
 
+        public bool IsBinary
+        {
+            get { return Format is BinaryFormat; }
+        }
+
+        public bool IsExtended
+        {
+            get { return Format is ExtendedFormat; }
+        }
+
+        public byte ExtendedType
+        {
+            get { return (_valueInfo != null) ? _valueInfo.ExtendedType : (byte)0; }
+        }
+
         public object GetValue()
         {
             if (_valueInfo == null)
