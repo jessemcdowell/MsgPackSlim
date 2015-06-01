@@ -13,10 +13,8 @@ namespace MsgPackSlim
         public static readonly StringFormat String = Register(new StringFormat());
         public static readonly NilFormat Nil = Register(new NilFormat());
         public static readonly BooleanFormat Boolean = Register(new BooleanFormat());
+        public static readonly BinaryFormat Binary = Register(new BinaryFormat());
 
-        //bin 8 11000100 0xc4
-        //bin 16 11000101 0xc5
-        //bin 32 11000110 0xc6
         //ext 8 11000111 0xc7
         //ext 16 11001000 0xc8
         //ext 32 11001001 0xc9
