@@ -37,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions.cs" />
+    <Compile Include="Formats\ExtendedFormat.cs" />
     <Compile Include="Formats\FloatingPointFormat.cs" />
     <Compile Include="Formats\BinaryFormat.cs" />
     <Compile Include="MsgPackFormatException.cs" />

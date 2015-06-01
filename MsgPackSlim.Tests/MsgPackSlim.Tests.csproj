@@ -38,8 +38,9 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Formats\FloatingPointFormatTests.cs" />
     <Compile Include="Formats\BinaryFormatTests.cs" />
+    <Compile Include="Formats\FloatingPointFormatTests.cs" />
+    <Compile Include="Formats\ExtendedFormatTests.cs" />
     <Compile Include="Formats\UnsignedIntegerFormatTests.cs" />
     <Compile Include="Formats\MapFormatTests.cs" />
     <Compile Include="Formats\StringFormatTests.cs" />
