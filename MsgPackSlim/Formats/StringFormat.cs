@@ -10,7 +10,7 @@ namespace MsgPackSlim.Formats
 
         public void Register(IMsgPackFormat[] formatMap)
         {
-            RegistrationHelper.RegisterBitMask(formatMap, this, 0xa0, 4);
+            RegistrationHelper.RegisterBitMask(formatMap, this, 0xa0, 5);
             formatMap[0xd9] = this;
             formatMap[0xda] = this;
             formatMap[0xdb] = this;

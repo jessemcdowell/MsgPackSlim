@@ -36,5 +36,19 @@ namespace MsgPackSlim
             var typesNotRegistered = allTypes.Except(allRegisteredTypes);
             Assert.That(typesNotRegistered, Is.Empty);
         }
+
+        [Test]
+        public void FormatMap_ContainsOnlyPublishedUnSupportedTypes()
+        {
+            var allNotSupportedBytes = MsgPackFormat.FormatMap
+                .Select((format, formatByte) => new {format, formatByte})
+                .Where(fi => fi.format is NotSupportedFormat)
+                .Select(fi => fi.formatByte);
+
+            Assert.That(allNotSupportedBytes, Is.EquivalentTo(new byte[]
+            {
+                0xc1
+            }));
+        }
     }
 }
