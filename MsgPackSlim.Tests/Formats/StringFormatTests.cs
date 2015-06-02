@@ -19,6 +19,10 @@ namespace MsgPackSlim.Formats
         private static readonly byte[] MultiByteTestBytes = GetBytes(0xe3, 0x81, 0x93, 0xe3, 0x82, 0x93, 0xe3, 0x81, 0xab,
             0xe3, 0x81, 0xa1, 0xe3, 0x81, 0xaf, 0xe3, 0x80, 0x81);
 
+        private const string LongFixStrText = "this is a long fixstr";
+        private static readonly byte[] LongFixStrBytes = GetBytes(0x74, 0x68, 0x69, 0x73, 0x20, 0x69, 0x73, 0x20, 0x61,
+            0x20, 0x6c, 0x6f, 0x6e, 0x67, 0x20, 0x66, 0x69, 0x78, 0x73, 0x74, 0x72);
+
         [TestFixtureSetUp]
         public void FixtureSetUp()
         {
@@ -59,6 +63,18 @@ namespace MsgPackSlim.Formats
         public void GetValue_ForFixString_ReturnsExpectedValue()
         {
             const byte formatByte = 0xab;
+            var info = ValueInfo.ForHeaderlessContent(LongFixStrBytes.Length);
+
+            var actual = Format.GetValue(formatByte, info, LongFixStrBytes);
+
+            Assert.That(actual, Is.EqualTo(LongFixStrText));
+        }
+
+
+        [Test]
+        public void GetValue_ForFixString_ThatIsLong_ReturnsExpectedValue()
+        {
+            const byte formatByte = 0xb5;
             var info = ValueInfo.ForHeaderlessContent(TestBytes.Length);
 
             var actual = Format.GetValue(formatByte, info, TestBytes);

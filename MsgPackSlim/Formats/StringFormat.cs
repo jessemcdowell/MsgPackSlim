@@ -18,8 +18,8 @@ namespace MsgPackSlim.Formats
 
         public ValueInfo ReadValueInfo(byte formatByte, Stream stream)
         {
-            if ((formatByte & 0xf0) == 0xa0)
-                return ValueInfo.ForHeaderlessContent(formatByte & 0x0f);
+            if ((formatByte & 0xe0) == 0xa0)
+                return ValueInfo.ForHeaderlessContent(formatByte & 0x1f);
 
             switch (formatByte)
             {
