@@ -48,7 +48,7 @@ namespace MsgPackSlim.Formats
             if (valueInfo.ContentSize == 0)
                 return "";
 
-            return Encoding.GetString(contentBytes);
+            return Encoding.GetString(contentBytes, contentBytes.Length - valueInfo.ContentSize, valueInfo.ContentSize);
         }
     }
 }
